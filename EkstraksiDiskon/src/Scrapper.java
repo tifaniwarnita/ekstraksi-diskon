@@ -1,89 +1,103 @@
-import org.jinstagram.Instagram;
-import org.jinstagram.auth.InstagramAuthService;
-import org.jinstagram.auth.model.Token;
-import org.jinstagram.auth.model.Verifier;
-import org.jinstagram.auth.oauth.InstagramService;
-import org.jinstagram.entity.tags.TagInfoData;
-import org.jinstagram.entity.tags.TagInfoFeed;
-import org.jinstagram.entity.users.basicinfo.UserInfo;
-import org.jinstagram.entity.users.basicinfo.UserInfoData;
-import org.jinstagram.exceptions.InstagramException;
+import twitter4j.*;
+import twitter4j.conf.ConfigurationBuilder;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 
 /**
  * Created by Tifani on 11/16/2016.
  */
 public class Scrapper {
-    private static final Token EMPTY_TOKEN = null;
+    public static Twitter twitter = null;
 
-    public static void createInstagram() {
-        InstagramService service = new InstagramAuthService()
-                .apiKey(Constants.CLIENT_ID)
-                .apiSecret(Constants.CLIENT_SECRET)
-                .callback(Constants.CALLBACK_URL)
-                .scope("basic")
-                .build();
-
-        // String authorizationUrl = service.getAuthorizationUrl();
-        // System.out.println(authorizationUrl);
-//        String authorizationUrl2 = "https://api.instagram.com/oauth/authorize/?client_id="
-//                + Constants.CLIENT_ID
-//                + "&redirect_uri="
-//                + Constants.CALLBACK_URL_MAP
-//                + "&response_type=token";
-//        System.out.println(authorizationUrl2);
-//        try {
-//            URL url = new URL(authorizationUrl);
-//            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-//            con.setRequestMethod("GET");
-//            con.setRequestProperty("User-Agent", Constants.USER_AGENT);
-//
-//            int responseCode = con.getResponseCode();
-//            System.out.println("\nSending 'GET' request to URL : " + url);
-//            System.out.println("Response Code : " + responseCode);
-//
-//            BufferedReader in = new BufferedReader(
-//                    new InputStreamReader(con.getInputStream()));
-//            String inputLine;
-//            StringBuffer response = new StringBuffer();
-//
-//            while ((inputLine = in.readLine()) != null) {
-//                response.append(inputLine);
-//            }
-//            in.close();
-//
-//            //print result
-//            System.out.println(response.toString());
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-        Verifier verifier = new Verifier(Constants.CODE);
-        Token accessToken = service.getAccessToken(verifier);
-        Instagram instagram = new Instagram(accessToken);
-
-        String tagName = "promobaju";
-        TagInfoFeed feed = null;
-        try {
-            feed = instagram.getTagInfo(tagName);
-            TagInfoData tagData = feed.getTagInfo();
-            System.out.println("name : " + tagData.getTagName());
-            System.out.println("media_count : " + tagData.getMediaCount());
-        } catch (InstagramException e) {
-            e.printStackTrace();
-        }
-//
-
+    public static void config() {
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+                .setOAuthConsumerKey(Constants.TWTTER_CONSUMER_KEY)
+                .setOAuthConsumerSecret(Constants.TWITTER_CONSUMER_SECRET)
+                .setOAuthAccessToken(Constants.TWITTER_ACCESS_TOKEN)
+                .setOAuthAccessTokenSecret(Constants.TWITTER_TOKEN_SECRET);
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        twitter = tf.getInstance();
     }
 
-    public static void main(String[] args) {
-        createInstagram();
+    public static ArrayList<Status> getTweets(String searchQuery, int numberOfTweets) throws TwitterException {
+        Query query = new Query(searchQuery);
+        long lastID = Long.MAX_VALUE;
+        ArrayList<Status> tweets = new ArrayList<Status>();
+
+        while (tweets.size () < numberOfTweets) {
+            if (numberOfTweets - tweets.size() > 100) {
+                query.setCount(100);
+            } else {
+                query.setCount(numberOfTweets - tweets.size());
+            }
+            QueryResult result = twitter.search(query);
+            tweets.addAll(result.getTweets());
+            System.out.println("Gathered " + tweets.size() + " tweets");
+            for (Status t: tweets) {
+                if(t.getId() < lastID) lastID = t.getId();
+            }
+            query.setMaxId(lastID-1);
+        }
+//        for (int i=0; i<tweets.size(); i++) {
+//            System.out.println("--Tweet #" + (i+1) + "--");
+//            System.out.println("@" + tweets.get(i).getUser().getScreenName() + ":" + tweets.get(i).getText());
+//        }
+        return tweets;
+    }
+
+    public static void writeCSV(String query, int numberOfTweets, String filepath) throws IOException, TwitterException {
+        ArrayList<Status> tweets = Scrapper.getTweets(query, numberOfTweets);
+        FileWriter writer = new FileWriter(filepath);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+        CSVUtils.writeLine(writer, Arrays.asList("id", "username", "name", "created_at", "lat", "long", "status"), '\t', '"');
+
+        for (Status status : tweets) {
+            GeoLocation geoLocation = status.getGeoLocation();
+            String statusText = status.getText().replaceAll("\\s", " ");
+            if (geoLocation != null) {
+                CSVUtils.writeLine(writer, Arrays.asList(
+                        String.valueOf(status.getId()),
+                        status.getUser().getScreenName(),
+                        status.getUser().getName(),
+                        dateFormat.format(status.getCreatedAt()),
+                        String.valueOf(status.getGeoLocation().getLatitude()),
+                        String.valueOf(status.getGeoLocation().getLongitude()),
+                        statusText)
+                        , '\t', '"');
+            } else {
+                CSVUtils.writeLine(writer, Arrays.asList(
+                        String.valueOf(status.getId()),
+                        status.getUser().getScreenName(),
+                        status.getUser().getName(),
+                        dateFormat.format(status.getCreatedAt()),
+                        "null",
+                        "null",
+                        statusText)
+                        , '\t', '"');
+            }
+        }
+
+        writer.flush();
+        writer.close();
+    }
+
+
+    public static void main(String[] args) throws TwitterException, IOException {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH.mm.ss");
+        Date date = new Date();
+        String currentDate = dateFormat.format(date);
+        String tag = "diskon";
+
+        Scrapper.config();
+        Scrapper.writeCSV("#" + tag, 2500, "csv/" + tag + " " + currentDate + ".txt");
     }
 
 }
