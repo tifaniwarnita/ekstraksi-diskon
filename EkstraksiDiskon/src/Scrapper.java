@@ -97,7 +97,7 @@ public class Scrapper {
         String tag = "diskon";
 
         Scrapper.config();
-        Scrapper.writeCSV("#" + tag, 2500, "csv/" + tag + " " + currentDate + ".txt");
+        Scrapper.writeCSV("" + tag, 2500, "csv/tanpa#" + tag + " " + currentDate + ".txt");
     }
 
 }
