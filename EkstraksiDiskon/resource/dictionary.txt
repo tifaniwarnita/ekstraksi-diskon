@@ -56,7 +56,7 @@ reed doorz	_hotel_
 pegipegi	_travel_agent_
 mc overed	_toko_fashion_
 dress cakram couple	_pakaian_
-never let lp couple _pakaian_
+never let lp couple	_pakaian_
 pusple merah couple	_pakaian_
 mahasiswa couple	_pakaian_
 @kickchickcloth	_toko_fashion_
@@ -64,7 +64,7 @@ sushi	_makanan_
 scoop	_majalah_
 grand inna kuta	_hotel_
 kaos lee cooper	_pakaian_
-gunung agung _toko_buku_
+gunung agung	_toko_buku_
 nike balanciaga merah couple	_pakaian_
 pierre cardin	_toko_fashion_
 delsey	_toko_fashion_
