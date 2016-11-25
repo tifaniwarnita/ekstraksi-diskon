@@ -2,6 +2,9 @@ yamaha	_merk_motor_
 yamaha vixion	_merk_motor_
 etude house	_toko_kecantikan_
 garuda indonesia	_maskapai_
+@indonesiagaruda	_maskapai_
+haikara sushi	_cafe_
+@citilink	_maskapai_
 honda vario	_merk_motor_
 honda	_merk_motor_
 beat	_merk_motor_
@@ -9,23 +12,129 @@ beat	_merk_motor_
 atm bca	_atm_
 @uber_idn	_transportasi_
 @tcash_id	_e-money_
+telkomsel tcash	_e-money_
 coffee bean	_cafe_
-@YellowTruckCo	_cafe_
+@coffeebeanindo _cafe_
+@yellowtruckco	_cafe_
 @sushi_ya	_cafe_
 ocbc nisp	_bank_
 lawson	_cafe_
-folia	_merk_gamis_
+folia	_pakaian_
 btn	_bank_
-@Qwordsdotcom	_web_hosting_
+@qwordsdotcom	_web_hosting_
+idcloudhost	_web_hosting_
 oxone	_perabot_
 hsbc	_bank_
-@MatahariMallCom	_department_store_
+citibank	_bank_
+@mataharimallcom	_department_store_
+anz	_department_store_
 bca	_bank_
 bni	_bank_
-@LesFemmesBags	_toko_fashion_
+@bni	_bank_
+@lesfemmesbags	_toko_fashion_
 cullote	_toko_fashion_
-snowbay	_waterpark_
+snowbay	_themepark_
 airasiago	_maskapai_
-super indo 	_department_store_
-santika	
-amaris	
+super indo	_department_store_
+santika	_hotel_
+amaris	_hotel_
+@transstudiobdng	_themepark_
+transstudiobdng	_themepark_
+kfc	_cafe_
+les femmes	_toko_fashion_
+nike	_toko_fashion_
+bakmi gm	_cafe_
+cold stone creamery	_cafe_
+eva bun beauty & salon	_salon_
+bubble drink	_minuman_
+traveloka	_travel_agent_
+barcelona couple	_pakaian_
+ramayana	_department_store_
+@tokopedia	_e-commerce_
+reed doorz	_hotel_
+pegipegi	_travel_agent_
+mc overed	_toko_fashion_
+dress cakram couple	_pakaian_
+never let lp couple _pakaian_
+pusple merah couple	_pakaian_
+mahasiswa couple	_pakaian_
+@kickchickcloth	_toko_fashion_
+sushi	_makanan_
+scoop	_majalah_
+grand inna kuta	_hotel_
+kaos lee cooper	_pakaian_
+gunung agung _toko_buku_
+nike balanciaga merah couple	_pakaian_
+pierre cardin	_toko_fashion_
+delsey	_toko_fashion_
+elle	_toko_fashion_
+wajirk lp navi couple	_pakaian_
+lazada	_e-commerce_
+hush puppies	_toko_fashion_
+cireng	_makanan_
+@herossupermarket	_department_store_
+@giantindo	_department_store_
+baju family rock coco	_pakaian_
+panin	_bank_
+tas tonga	_tas_
+@indomaret	_department_store_
+air asia	_maskapai_
+selfin couple	_pakaian_
+daniel wellington classic	_jam_
+grabbike	_transportasi_
+shine powder	_makeup_
+a&w	_cafe_
+kenny rogers	_cafe_
+@vipplazaid	_department_store_
+onigiri	_makanan_
+airasia	_maskapai_
+kanik mensocks	_pakaian_
+holland bakery	_cafe_
+adidas	_toko_fashion_
+@ayrahijabku	_pakaian_
+resto ngalam	_cafee_
+obermain	_toko_fashion_
+playboy shoes	_toko_fashion_
+garskin	_aksesoris_
+go-car	_transportasi_
+@gojekindonesia	_transportasi_
+@tmbookstore	_toko_buku_
+midori	_cafe_
+@erafonestore	_toko_elektronik_
+samsung	_merk_elektronik_
+uob	_bank_
+fish sandwich	_makanan_
+kalasan	_cafe_
+sun plaza	_department_store_
+gamis	_pakaian_
+clover clothing	_pakaian_
+@bukalapak	_e-commerce_
+cimb niaga	_bank_
+desserved	_cafe_
+@excelsocoffee	_cafe_
+trans studio bandung	_themepark_
+wonjo korean barbeque restaurant	_cafe_
+matahari	_department_store_
+lotteria	_cafe_
+tchef basic	_pakaian_
+cutie bag	_tas_
+ayra	_merk_pakaian_
+jaket couple	_pakaian_
+water kingdom	_themepark_
+haikara sushi	_cafe_
+apple	_merk_elektronik_
+pashmina	_pakaian_
+yogya gokart	_themepark_
+ahass	_bengkel_
+ebook	_buku_
+santan combo meal	_makanan_
+#dinomarket	_department_store_
+aini	_merk_pakaian_
+the ego coffee	_cafe_
+honda	_merk_motor_
+ocean blue	_pakaian_
+lottemart	_department_store_
+ralph lauren	_merk_pakaian_
+polo	_pakaian_
+gamis	_pakaian_
+ayumi	_merk_pakaian_
