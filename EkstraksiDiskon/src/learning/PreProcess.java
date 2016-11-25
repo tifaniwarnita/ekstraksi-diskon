@@ -26,6 +26,8 @@ import java.io.IOException;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,6 +37,9 @@ import java.util.regex.Pattern;
 public class PreProcess {
     public static final int TYPE_KLASIFIKASI_DISKON = 0;
     public static final int TYPE_KATEGORI = 1;
+
+    private static final String DICTIONARY_PATH = "resource/dictionary.txt";
+    private static HashMap<String, String> dictionary = readDictionary();
 
     public PreProcess() {
     }
@@ -90,6 +95,37 @@ public class PreProcess {
         }
     }
 
+    public static HashMap<String, String> readDictionary() {
+        HashMap<String, String> hashMap = new HashMap<>();
+        BufferedReader br = null;
+        String line = "";
+        String cvsSplitBy = "\t";
+
+        try {
+            br = new BufferedReader(new FileReader(DICTIONARY_PATH));
+            while ((line = br.readLine()) != null) {
+
+                // use tab as separator
+                String[] dict = line.split(cvsSplitBy);
+                System.out.println("dict: " + dict[0]);
+                hashMap.put(dict[0], dict[1]);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (br != null) {
+                try {
+                    br.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return hashMap;
+    }
+
     public static void prosesKlasifikasiDiskon(StringBuffer buf, String[] tweet, int i) {
         if (tweet[3].equals("ya")) {
             writeToFile("data/processed/diskon/ya/diskon-" + i + ".txt", buf.toString());
@@ -99,8 +135,15 @@ public class PreProcess {
     }
 
     public static void prosesKategoriDiskon(StringBuffer buf, String[] tweet, int i) {
+        String result = buf.toString();
+        if (dictionary != null) {
+            for (Map.Entry<String, String> entry : dictionary.entrySet()) {
+                result = result.replace(entry.getKey(), entry.getValue());
+            }
+        }
         if (tweet.length >=4) {
-            writeToFile("data/processed/kategori/" + tweet[3] + "/" + tweet[3] + "-" + i + ".txt", buf.toString());
+            writeToFile("data/processed/kategori/" + tweet[3] + "/" + tweet[3] + "-" + i + ".txt", result);
+            System.out.println(result);
         }
     }
 
@@ -117,8 +160,8 @@ public class PreProcess {
             saver.setFile(new File(arrfPath));
             saver.writeBatch();
 
-            System.out.println("Build classifier");
-            DiskonClassifier.buildClassifier("model/random-forest.model", dataRaw);
+            // System.out.println("Build classifier");
+            // DiskonClassifier.buildClassifier("model/" + arrfPath, dataRaw);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -176,6 +219,16 @@ public class PreProcess {
         result = result.replaceAll("[,/.()+-='\"]", "");
         result = result.replaceAll("[^\\x00-\\x7F]", "");
         result = result.replaceAll("\\P{InBasic_Latin}", "");
+        return result;
+    }
+
+    public static String normalizeTweet(String username, String fullname, String text) {
+        String result = PreProcess.normalizeText(username);
+        result += " " + PreProcess.normalizeText(fullname);
+        ArrayList<String> terms = PreProcess.run(text);
+        for(String term : terms) {
+            result += " " + term;
+        }
         return result;
     }
 

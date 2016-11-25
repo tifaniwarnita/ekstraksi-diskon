@@ -94,7 +94,7 @@ public class DiskonClassifier {
         data.setClassIndex(data.numAttributes() - 1);
         Instance instanceTest = new DenseInstance(data.numAttributes());
 
-        String textValue = FeatureExtraction.normalizeTweet(tweet.getUser().getScreenName(),
+        String textValue = PreProcess.normalizeTweet(tweet.getUser().getScreenName(),
                 tweet.getUser().getName(),
                 tweet.getText());
         instanceTest.setValue(text, textValue);
