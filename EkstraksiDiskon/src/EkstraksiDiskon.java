@@ -21,8 +21,8 @@ public class EkstraksiDiskon {
 
     public static void main(String[] args) throws Exception {
         //PreProcess.readDictionary();
-        PreProcess.processTSV("data/kategori.tsv", PreProcess.TYPE_KATEGORI);
-//        PreProcess.saveArff("data/processed/kategori/", "data/processed/kategori.arff");
+//        PreProcess.processTSV("data/kategori.tsv", PreProcess.TYPE_KATEGORI);
+        PreProcess.saveArff("data/processed/kategori/", "data/processed/kategori.arff");
 
 //         preprocessData();
 //        Scrapper.config();
