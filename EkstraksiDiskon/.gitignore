@@ -43,3 +43,6 @@ fabric.properties
 
 # Secret
 src/Constants.java
+
+# Processed data
+data/processed/
