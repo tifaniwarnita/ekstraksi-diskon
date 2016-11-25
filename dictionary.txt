@@ -27,6 +27,7 @@ oxone	_perabot_
 hsbc	_bank_
 citibank	_bank_
 @mataharimallcom	_department_store_
+mataharimall	_department_store_
 anz	_department_store_
 bca	_bank_
 bni	_bank_
@@ -91,7 +92,7 @@ airasia	_maskapai_
 kanik mensocks	_pakaian_
 holland bakery	_cafe_
 adidas	_toko_fashion_
-@ayrahijabku	_pakaian_
+@ayrahijabku	_merk_pakaian_
 resto ngalam	_cafee_
 obermain	_toko_fashion_
 playboy shoes	_toko_fashion_
@@ -130,6 +131,7 @@ ebook	_buku_
 santan combo meal	_makanan_
 #dinomarket	_department_store_
 aini	_merk_pakaian_
+@dinomarket	_department_store_
 the ego coffee	_cafe_
 honda	_merk_motor_
 ocean blue	_pakaian_
@@ -138,3 +140,108 @@ ralph lauren	_merk_pakaian_
 polo	_pakaian_
 gamis	_pakaian_
 ayumi	_merk_pakaian_
+alfamart	_department_store_
+tata motors	_bengkel_
+coca suki	_cafe_
+peak	_toko_fashion_
+olympus camera	_merk_elektronik_
+@bliblidotcom	_e-commerce_
+@cimbniaga	_bank_
+blackberry	_merk_elektronik_
+oriflame	_produk_kecantikan_
+protecting oil	_produk_kecantikan_
+hair mask	_produk_kecantikan_
+eleo	_produk_kecantikan_
+shampoo	_produk_kecantikan_
+zalora	_toko_fashion_
+tas manik	_tas_
+@dominos_id	_cafe_
+@kedaikepo	_cafe_
+kedai kepo	_cafe_
+marco cuomo	_toko_fashion_
+the square coffee shop	_cafe_
+lenovo	_merk_elektronik_
+@pizzahut.indonesia	_cafe_
+pizzahut	_cafe_
+kulina	_cafe_
+lippo mall	_department_store_
+milano buccheri	_toko_fashion_
+polo stockholm	_pakaian_
+lixiao	_produk_kecantikan_
+gramedia	_toko_buku_
+komik	_buku_
+ransel	_tas_
+backpack	_tas_
+mitsubishi	_merk_motor_
+piyama	_pakaian_
+nevada	_toko_fashion_
+@kartudanamon	_bank_
+mandiri	_bank_
+@sriwijayaair	_maskapai_
+novel	_buku_
+avtech	_toko_elektronik_
+skincare	_produk_kecantikan_
+wendys	_cafe_
+papa rons	_cafe_
+phd pizza	_cafe_
+nature	_poduk_kecantikan_
+vinoti living	_toko_perabot_
+headphone	_merk_elektronik_
+go-pay	_e-money_
+sony	_merk_elektronik_
+tokocamzone	_toko_elektronik_
+@elzattahijab	_pakaian_
+toserba	_department_store_
+hugo boss	_toko_fashion_
+bip	_department_store_
+nutrishake	_produk_kecantikan_
+polytron	_merk_elektronik_
+popolamama	_cafe_
+rs bethsaida	_rumah_sakit_
+louis vuitton	_toko_fashion_
+alila	_pakaian_
+washoku sato	_cafe_
+elzatta	_pakaian_
+xiaomi mi	_merk_elektronik_
+polo	_toko_fashion_
+waterpark	_themepark_
+es teller 77	_cafe_
+ciabatta	_makanan_
+carrefour	_department_store_
+apparel	_toko_fashion_
+palomino	_toko_fashion_
+alfacart	_e-commerce_
+revitalash	_produk_kecantikan_
+clozette	_toko_fashion_
+misya	_merk_pakaian_
+kompas	_buku_
+reflexology	_produk_kecantikan_
+spa	_produk_kecantikan_
+alaya resort	_travel_agent_
+bata	_toko_fashion_
+breadtalk	_makanan_
+burger king	_makanan_
+cgv blitz	_theater_
+dufan	_themepark_
+the body shop	_produk_kecantikan_
+texas chicken	_cafe_
+all new kia	_merk_mobil_
+kemeja	_pakaian_
+zara	_produk_fashion_
+popcorn	_makanan_
+hawaiian bistro	_cafe_
+jersey	_pakaian_
+bubble tea	_minuman_
+mega fashion	_toko_fashion_
+dcrepes	_makanan_
+pen & paw	_toko_fashion_
+fleece	_pakaian_
+rococo	_toko_fashion_
+crocodille	_merk_pakaian_
+permata	_bank_
+dapur cokelat	_cafe_
+killiney	_cafe_
+bekale	_makanan_
+#ecogreenpark	_themepark_
+furama resto	_cafe_
+nikki & lauda	_produk_fashion_
