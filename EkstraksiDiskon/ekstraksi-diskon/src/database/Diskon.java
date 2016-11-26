@@ -21,13 +21,16 @@ public class Diskon {
     String avatar;
     String tweet;
     Timestamp createdAt;
-    String name;
     String discount;
     String price;
     String image;
+    String tanggal;
+    String pembayaran;
+    String kodeVoucher;
     
     public Diskon(int id, int categoryId, String uname, String screenName, String avatar, String tweet,
-                Timestamp createdAt, String name, String discount, String price, String image) {
+                Timestamp createdAt, String discount, String price, String image,
+                String tanggal, String pembayaran, String kodeVoucher) {
         this.id = id;
         this.categoryId = categoryId;
         this.username = uname;
@@ -35,10 +38,12 @@ public class Diskon {
         this.avatar = avatar;
         this.tweet = tweet;
         this.createdAt = createdAt;
-        this.name = name;
         this.discount = discount;
         this.price = price;
         this.image = image;
+        this.tanggal = tanggal;
+        this.pembayaran = pembayaran;
+        this.kodeVoucher = kodeVoucher;
     }
     
     public int getId() {
@@ -69,8 +74,16 @@ public class Diskon {
         return createdAt;
     }
     
-    public String getName() {
-        return name;
+    public String getTanggal() {
+        return tanggal;
+    }
+    
+    public String getPembayaran() {
+        return pembayaran;
+    }
+    
+    public String getKodeVoucher() {
+        return kodeVoucher;
     }
     
     public String getDiscount() {
@@ -105,8 +118,16 @@ public class Diskon {
         this.tweet = tweet;
     }
     
-    public void setName(String name) {
-        this.name = name;
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+    
+    public void setPembayaran(String pembayaran) {
+        this.pembayaran = pembayaran;
+    }
+    
+    public void setKodeVoucher(String kode) {
+        this.kodeVoucher = kode;
     }
     
     public void setPrice(String price) {
