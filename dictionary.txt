@@ -14,7 +14,7 @@ atm bca	_atm_
 @tcash_id	_e-money_
 telkomsel tcash	_e-money_
 coffee bean	_cafe_
-@coffeebeanindo _cafe_
+@coffeebeanindo	_cafe_
 @yellowtruckco	_cafe_
 @sushi_ya	_cafe_
 ocbc nisp	_bank_
