@@ -1,0 +1,226 @@
+body {
+	background-size: 100% auto;
+	margin:0;
+	overflow-y:default;
+}
+hr {
+    border: 0;
+    height: 3px;
+    background-image: linear-gradient(to right, rgba(123, 210, 247, 0), rgba(123, 210, 247, 0.75), rgba(123, 210, 247, 0));
+}
+h1 {
+	font-family: "Lilita One";
+	font-size: 80px;
+    color: #f8b1b5;
+    text-align: center;
+    text-shadow:
+       3px 3px 0 #fff,
+     -3px -3px 0 #fff,  
+      3px -3px 0 #fff,
+      -3px 3px 0 #fff,
+       3px 3px 0 #fff;
+    background: rgba(255,255,255,0.5);
+    padding: 10px;
+}
+h2 {
+	font-family: "Lilita One";
+	font-size: 30px;
+	color: #7bd2f7;
+	text-align: center;
+}
+
+#main-section {
+	position: absolute;
+	top: -150px;
+	padding-top: 150px;
+	background : transparent;
+	width: 115%;
+	height:130vh;
+	background-image: url("../img/Main_Background.gif");
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-color: transparent;
+}
+#discount-section {
+	background: url("../img/Category_Background.gif") no-repeat center center;
+	background-attachment: fixed;
+	background-size: cover;
+	font-family: "Dosis";
+}
+#main-container {
+	width: 60%;
+
+}
+.category-button {
+	width: 31%;
+	background-color: white;
+	margin: 1%;
+	display: inline-block;
+	text-align: center;
+	height: 125px;
+	vertical-align: top;
+}
+.category-button:hover {
+	background: rgba(255,255,255,0.5);
+}
+.category-button:hover h2 {
+	color: white;
+}
+#discount-container {
+	width: 100%;
+	background-color: white;
+}
+#tweets-container {
+	padding: 20px;
+	min-height:500px;
+}
+.kategori-tweet {
+	margin-top: 10px;
+	font-size: 16px;
+	font-weight: bold;
+}
+#legenda-informasi {
+	list-style: none;
+}
+#legenda-informasi li {
+
+  margin: 0 20px;
+  display: inline-block;
+}
+
+#legenda-informasi li:before {
+  content:'\25A0';
+  display: block;
+  position: relative;
+  max-width: 0px;
+  max-height: 0px;
+  left: -25px;
+  top: -25px;
+  font-size: 40px;
+}
+#legenda-diskon:before {
+	color: #c8ffda;
+}
+#legenda-harga:before {
+	color: #e4f7ff;
+}
+#legenda-tanggal:before {
+	color: #ffc5bb;
+}
+#legenda-cara-pembayaran:before {
+	color: #ffeec4;
+}
+#legenda-kode:before {
+	color: #cda8b5;
+}
+
+.message-item {
+margin-bottom: 25px;
+margin-left: 40px;
+position: relative;
+}
+.message-item .message-inner {
+background: #fff;
+border: 1px solid #ddd;
+border-radius: 3px;
+padding: 10px;
+position: relative;
+}
+.message-item .message-inner:before {
+border-right: 10px solid #ddd;
+border-style: solid;
+border-width: 10px;
+color: rgba(0,0,0,0);
+content: "";
+display: block;
+height: 0;
+position: absolute;
+left: -20px;
+top: 6px;
+width: 0;
+}
+.message-item .message-inner:after {
+border-right: 10px solid #fff;
+border-style: solid;
+border-width: 10px;
+color: rgba(0,0,0,0);
+content: "";
+display: block;
+height: 0;
+position: absolute;
+left: -18px;
+top: 6px;
+width: 0;
+}
+.message-item:before {
+background: #fff;
+border-radius: 2px;
+bottom: -30px;
+box-shadow: 0 0 3px rgba(0,0,0,0.2);
+content: "";
+height: 100%;
+left: -30px;
+position: absolute;
+width: 3px;
+}
+.message-item:after {
+background: #fff;
+border: 2px solid #ccc;
+border-radius: 50%;
+box-shadow: 0 0 5px rgba(0,0,0,0.1);
+content: "";
+height: 15px;
+left: -36px;
+position: absolute;
+top: 10px;
+width: 15px;
+}
+.clearfix:before, .clearfix:after {
+content: " ";
+display: table;
+}
+.message-item .message-head {
+border-bottom: 1px solid #eee;
+margin-bottom: 8px;
+padding-bottom: 8px;
+}
+.message-item .message-head .avatar {
+margin-right: 10px;
+}
+.message-item .message-head .user-detail {
+
+}
+.message-item .message-head .user-detail h5 {
+font-size: 16px;
+font-weight: bold;
+margin: 0;
+}
+.message-item .message-head .post-meta {
+float: left;
+padding: 0 15px 0 0;
+}
+.message-head .
+.message-item .message-head .post-meta >div {
+color: #333;
+font-weight: bold;
+text-align: right;
+}
+.post-meta > div {
+color: #777;
+font-size: 12px;
+line-height: 22px;
+}
+.message-item .message-head .post-meta >div {
+color: #333;
+font-weight: bold;
+text-align: right;
+}
+.post-meta > div {
+color: #777;
+font-size: 12px;
+line-height: 22px;
+}
+.message-item .message-head img {
+ min-height: 40px;
+ max-height: 40px;
+}
