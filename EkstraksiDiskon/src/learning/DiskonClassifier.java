@@ -6,9 +6,14 @@ import weka.classifiers.Evaluation;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.RandomForest;
 import weka.core.*;
+import weka.core.converters.ArffLoader;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -16,11 +21,29 @@ import java.util.Random;
  * Created by Tifani on 11/25/2016.
  */
 public class DiskonClassifier {
-
     public static final String PATH_MODEL_KLASIFIKASI = "model/random-forest.model";
+    public static final int BUKAN_DISKON = 0;
+    public static final int DISKON = 1;
 
-    public static FilteredClassifier loadDiskonClassifierModel(String path) throws Exception {
-        return (FilteredClassifier) weka.core.SerializationHelper.read(path);
+    private static FilteredClassifier classifier = loadDiskonClassifierModel(PATH_MODEL_KLASIFIKASI);
+
+    public static FilteredClassifier loadDiskonClassifierModel(String path) {
+        FilteredClassifier filteredClassifier = null;
+        try {
+            filteredClassifier = (FilteredClassifier) weka.core.SerializationHelper.read(path);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  filteredClassifier;
+    }
+
+    public static Instances loadArff(String filepath) throws IOException {
+        BufferedReader reader =
+                new BufferedReader(new FileReader(filepath));
+        ArffLoader.ArffReader arff = new ArffLoader.ArffReader(reader);
+        Instances data = arff.getData();
+        data.setClassIndex(data.numAttributes() - 1);
+        return data;
     }
 
     public static void buildClassifier(String pathSave, Instances data) throws Exception {
@@ -75,9 +98,7 @@ public class DiskonClassifier {
         weka.core.SerializationHelper.write(pathSave, filteredClassifier);
     }
 
-    public static boolean classifyTweet(String path, Status tweet) throws Exception {
-        FilteredClassifier classifier = loadDiskonClassifierModel(path);
-
+    public static boolean classifyTweet(Status tweet) throws Exception {
         ArrayList<Attribute> attributeList = new ArrayList<Attribute>();
         Attribute text = new Attribute("text", (FastVector) null);
 
@@ -103,8 +124,7 @@ public class DiskonClassifier {
         data.add(instanceTest);
 
         double result = classifier.classifyInstance(instanceTest);
-        System.out.println(" RESULT: " + result);
-        if ((int) result == 1) return true;
+        if ((int) result == DISKON) return true;
             else return false;
     }
 
