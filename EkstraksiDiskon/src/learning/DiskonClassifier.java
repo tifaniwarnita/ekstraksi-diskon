@@ -21,7 +21,7 @@ import java.util.Random;
  * Created by Tifani on 11/25/2016.
  */
 public class DiskonClassifier {
-    public static final String PATH_MODEL_KLASIFIKASI = "model/random-forest.model";
+    public static final String PATH_MODEL_KLASIFIKASI = "model/diskon-model.model";
     public static final int BUKAN_DISKON = 0;
     public static final int DISKON = 1;
 

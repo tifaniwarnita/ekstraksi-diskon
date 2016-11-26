@@ -107,7 +107,6 @@ public class PreProcess {
 
                 // use tab as separator
                 String[] dict = line.split(cvsSplitBy);
-                System.out.println("dict: " + dict[0]);
                 hashMap.put(dict[0], dict[1]);
             }
         } catch (FileNotFoundException e) {
@@ -229,6 +228,14 @@ public class PreProcess {
         for(String term : terms) {
             result += " " + term;
         }
+        return result;
+    }
+
+    public static String normalizeTweetForExtraction(String username, String fullname, String text) {
+        String result = PreProcess.normalizeText(username);
+        result += " " + PreProcess.normalizeText(fullname);
+        result += " " + text;
+        result = result.toLowerCase().replace("@", "").replace("#", "");
         return result;
     }
 

@@ -34,23 +34,8 @@ public class EkstraksiDiskon {
     }
 
     public static void main(String[] args) throws Exception {
-//        Instances dataKategori = DiskonClassifier.loadArff("data/processed/kategori.arff");
-//        DiskonClassifier.buildClassifier("model/kategori-model.model", dataKategori);
-//        PreProcess.processTSV("data/diskon.tsv", PreProcess.TYPE_KLASIFIKASI_DISKON);
-//        PreProcess.saveArff("data/processed/diskon/", "data/processed/diskon.arff");
-//        String tweet = "Sekarang djksfhds diskon 50% dan 30% 34 @peRseN";
-//        ArrayList<String> result = DiskonExtraction.extractInfo(tweet, DiskonExtraction.DISKON);
-//        for (String s : result) {
-//            System.out.println(s);
-//        }
-
-        //PreProcess.readDictionary();
-//        PreProcess.processTSV("data/kategori.tsv", PreProcess.TYPE_KATEGORI);
-//        PreProcess.saveArff("data/processed/kategori/", "data/processed/kategori.arff");
-
-//         preprocessData();
         Scrapper.config();
-        ArrayList<Status> tweets = Scrapper.getTweets("diskon", 100);
+        ArrayList<Status> tweets = Scrapper.getTweets("diskon", 50);
         int i = 1;
         for(Status tweet : tweets) {
             boolean isDiskon = DiskonClassifier.classifyTweet(tweet);
@@ -88,8 +73,39 @@ public class EkstraksiDiskon {
                         break;
                 }
                 System.out.println("@" + tweet.getUser().getScreenName() + ": " + tweet.getText());
+
+                ArrayList<String> extract;
+                extract = DiskonExtraction.extractInfo(tweet, DiskonExtraction.DISKON);
+                if (extract.size() > 0) {
+                    System.out.print("Diskon        : ");
+                    DiskonExtraction.printExtractedInfo(extract);
+                }
+
+                extract = DiskonExtraction.extractInfo(tweet, DiskonExtraction.HARGA);
+                if (extract.size() > 0) {
+                    System.out.print("Harga         : ");
+                    DiskonExtraction.printExtractedInfo(extract);
+                }
+
+                extract = DiskonExtraction.extractInfo(tweet, DiskonExtraction.TANGGAL);
+                if (extract.size() > 0) {
+                    System.out.print("Tanggal       : ");
+                    DiskonExtraction.printExtractedInfo(extract);
+                }
+
+                extract = DiskonExtraction.extractInfo(tweet, DiskonExtraction.CARA_PEMBAYARAN);
+                if (extract.size() > 0) {
+                    System.out.print("Pembayaran    : ");
+                    DiskonExtraction.printExtractedInfo(extract);
+                }
+
+                extract = DiskonExtraction.extractInfo(tweet, DiskonExtraction.KODE_VOUCHER);
+                if (extract.size() > 0) {
+                    System.out.print("Kode Voucher  : ");
+                    DiskonExtraction.printExtractedInfo(extract);
+                }
             } else {
-                System.out.println("[BUKAN DISKON] ");
+                System.out.println("BUKAN DISKON ==> @" + tweet.getUser().getScreenName() + ": " + tweet.getText());
             }
             System.out.println();
             i++;

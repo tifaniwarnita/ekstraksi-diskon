@@ -1,6 +1,7 @@
 package learning;
 
 import com.sun.org.apache.regexp.internal.RE;
+import twitter4j.Status;
 
 import java.util.ArrayList;
 import java.util.regex.Matcher;
@@ -24,7 +25,10 @@ public class DiskonExtraction {
 
 
 
-    public static ArrayList<String> extractInfo(String tweet, int type) {
+    public static ArrayList<String> extractInfo(Status status, int type) {
+        String tweet = PreProcess.normalizeTweetForExtraction(status.getUser().getScreenName(),
+                status.getUser().getName(),
+                status.getText());
         ArrayList<String> result = new ArrayList<>();
 
         Pattern pattern = null;
@@ -45,10 +49,28 @@ public class DiskonExtraction {
                 pattern = Pattern.compile(REGEX_KODE_VOUCHER);
                 break;
         }
-        Matcher matcher = pattern.matcher(tweet.toLowerCase().replace("@","").replace("#",""));
+        Matcher matcher = pattern.matcher(tweet);
         while (matcher.find()) {
-            result.add(matcher.group(0));
+            for(int i=1; i<matcher.groupCount()+1; i++) {
+                if (matcher.group(i) != null)
+                    result.add(matcher.group(i));
+            }
         }
         return result;
+    }
+
+    public static void printExtractedInfo(ArrayList<String> extract) {
+        if (extract.size() > 0) {
+            for(int j=0; j<extract.size(); j++) {
+                System.out.print(extract.get(j));
+                if (j < extract.size()-1) {
+                    System.out.print(", ");
+                }
+            }
+            System.out.println();
+        } else {
+            System.out.println("-");
+        }
+
     }
 }
