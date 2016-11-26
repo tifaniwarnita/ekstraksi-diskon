@@ -31,7 +31,14 @@
 						<li id="legenda-kode">Kode</li>
 					</ul>
 				</div>
-				<div id="tweets-container"></div>
+				<div id="tweets-container">
+					<div class="progress">
+					  <div class="progress-bar progress-bar-striped active" role="progressbar"
+					  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+					    Loading.....
+					  </div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -48,51 +55,57 @@
 	var kategori = getParameterByName("kategori");
 	$('#gambar-kategori').attr('src','img/'+kategori+'.png');
 	$('#nama-kategori').html('<a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span></a> '+namaKategori[kategori]);
-	var dataObject = {}
-	dataObject['kategori'] = kategori;
-	var url = 'http://192.168.0.117:8080/EkstraksiDiskonServer/diskon';
+
+	var url = 'http://192.168.0.117:8080/EkstraksiDiskonServer/diskon?kategori='+kategori;
 
 	// var tweetdummy = {username: "asanilta", name: "Asanilta", avatar: "img/fashion.png", created_at: "26/11/2016 11:26 AM", id:"1", text: "Tes tes tes tes tes tes tes", image:"img/Main_Background.gif", kategori: "kecantikan"};
-	// var tweetHTML = function(tweet) {
-	// 	var html = `<div class="message-item">
-	// 					<div class="message-inner">
-	// 						<div class="message-head clearfix">
-	// 							<div class="avatar pull-left"><a href="http://twitter.com/${tweet.username}"><img src="${tweet.avatar}"></div>
-	// 							<div class="user-detail">
-	// 								<h5 class="handle">${tweet.screen_name}</h5>
-	// 								<div class="post-meta">
-	// 									<div class="asker-meta">
-	// 										<span class="qa-message-who">
-	// 											<span class="qa-message-who-data"><a href="http://twitter.com/${tweet.username}">@${tweet.username}</a></span>
-	// 										</span> | 
-	// 										<span class="qa-message-when">
-	// 											<span class="qa-message-when-data">${tweet.created_at}</span>
-	// 										</span>
-	// 									</div>
-	// 				 				</div>
-	// 							</div>
-	// 						</div>
-	// 						<div class="qa-message-content">${tweet.tweet}`;
-	// 	if (tweet.hasOwnProperty('image')) {
-	// 		html +=		`<br><br><img src="${tweet.image}" style="max-width:400px">`;
-	// 	}
-	// 	if (tweet.hasOwnProperty('category_id')) {
-	// 		html += `<div class="kategori-tweet">Kategori: <a href="diskon.html?kategori=${tweet.category_id}">${namaKategori[tweet.kategori]}</a></div>`;
-	// 	}
-	// 	html +=			`</div>
-	// 				</div>
-	// 			</div>`;
-	// 	return html;
-	// }
+	var tweetHTML = function(tweet) {
+		var html = `<div class="message-item">
+						<div class="message-inner">
+							<div class="message-head clearfix">
+								<div class="avatar pull-left"><a href="http://twitter.com/${tweet.username}"><img src="${tweet.avatar}"></div>
+								<div class="user-detail">
+									<h5 class="handle">${tweet.name}</h5>
+									<div class="post-meta">
+										<div class="asker-meta">
+											<span class="qa-message-who">
+												<span class="qa-message-who-data"><a href="http://twitter.com/${tweet.username}">@${tweet.username}</a></span>
+											</span> | 
+											<span class="qa-message-when">
+												<span class="qa-message-when-data">${tweet.created_at}</span>
+											</span>
+										</div>
+					 				</div>
+								</div>
+							</div>
+							<div class="qa-message-content">${tweet.tweet}`;
+		if (tweet.hasOwnProperty('image')) {
+			html +=		`<br><br><img src="${tweet.image}" style="max-width:400px">`;
+		}
+		if (tweet.hasOwnProperty('category_id')) {
+			html += `<div class="kategori-tweet">Kategori: <a href="diskon.html?kategori=${tweet.category_id}">${namaKategori[tweet.kategori]}</a></div>`;
+		}
+		html +=			`</div>
+					</div>
+				</div>`;
+		return html;
+	}
 	// $('#tweets-container').append(tweetHTML(tweetdummy));
-	$.getJSON(url,dataObject,function(response){
-			// var items = [];
-			alert(response);
-			// $.each(response.data, function(i,tweet) {
-				// items.push(tweetHTML(tweet));
-			// });
-			// $('#tweets-container').html(items.join(""));
-	});	
+	var ajax_call = $.ajax({
+  		dataType: "json",
+  		url: url,
+	}).done(function(response) {
+		$.each(response.data, function(i,tweet) {
+			items.push(tweetHTML(tweet));
+		});
+		$('#tweets-container').html(items.join(""));
+
+	});
+	// $.getJSON(url,dataObject,function(response){
+	// 		// var items = [];
+	// 		alert(response);
+			
+	// });	
 	// var ajax_call = function() {
 	// 	$.getJSON(url,dataObject,function(response){
 	// 		var items = [];
@@ -103,6 +116,7 @@
 	// 		$('#tweets-container').html(items.join(""));
 	// 	});
 	// }
+	
 	// var interval = 1000 * 60 * 1;
 	// setInterval(ajax_call,interval);
 

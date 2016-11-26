@@ -1,7 +1,7 @@
 body {
 	background-size: 100% auto;
 	margin:0;
-	overflow-y:scroll;
+	overflow-y:default;
 }
 hr {
     border: 0;
@@ -49,6 +49,7 @@ h2 {
 }
 #main-container {
 	width: 60%;
+
 }
 .category-button {
 	width: 31%;
@@ -71,6 +72,7 @@ h2 {
 }
 #tweets-container {
 	padding: 20px;
+	min-height:500px;
 }
 .kategori-tweet {
 	margin-top: 10px;
