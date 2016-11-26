@@ -180,6 +180,7 @@ public class DatabaseHelper {
                 dbStatement.setString(10, data.pembayaran);
                 dbStatement.setString(11, data.kodeVoucher);
                 dbStatement.executeUpdate();
+                System.out.println(dbStatement.toString());
                 dbStatement.close();
             }
         } catch (SQLException ex) {

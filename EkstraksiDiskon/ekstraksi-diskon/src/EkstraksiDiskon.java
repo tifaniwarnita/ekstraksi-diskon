@@ -169,7 +169,6 @@ public class EkstraksiDiskon {
                     }
                 }
                 
-                
                 dbHelper.insertTweetByCategoryName(categoryname, new Diskon(0, 0, username, screenname, avatar, text, createdAt,
                                                     diskon, harga, media, tanggal, pembayaran, voucher));
             } else {

@@ -165,19 +165,22 @@ public class DatabaseHelper {
     public boolean insertTweetByCategoryName(String categoryName, Diskon data) {
         String tablename = this.getCategoryByCategoryName(categoryName);
         try {
-            String query = "INSERT INTO " + tablename + " (username, screen_name, avatar, text, name, discount, price, image, created_at) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?);";
+            String query = "INSERT INTO " + tablename + " (username, screen_name, avatar, text, discount, price, image, created_at,"
+                    + "tanggal, pembayaran, kode_voucher) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
             try (PreparedStatement dbStatement = conn.prepareStatement(query)) {
                 dbStatement.setString(1, data.username);
                 dbStatement.setString(2, data.screenName);
                 dbStatement.setString(3, data.avatar);
                 dbStatement.setString(4, data.tweet);
-                dbStatement.setString(5, data.name);
-                dbStatement.setString(6, data.discount);
-                dbStatement.setString(7, data.price);
-                dbStatement.setString(8, data.image);
-                dbStatement.setTimestamp(9, data.createdAt);
+                dbStatement.setString(5, data.discount);
+                dbStatement.setString(6, data.price);
+                dbStatement.setString(7, data.image);
+                dbStatement.setTimestamp(8, data.createdAt);
+                dbStatement.setString(9, data.tanggal);
+                dbStatement.setString(10, data.pembayaran);
+                dbStatement.setString(11, data.kodeVoucher);
                 dbStatement.executeUpdate();
+                System.out.println(dbStatement.toString());
                 dbStatement.close();
             }
         } catch (SQLException ex) {
@@ -189,18 +192,20 @@ public class DatabaseHelper {
     public boolean insertTweetById(int id, Diskon data) {
         String tablename = this.getCategoryById(id);
         try {
-            String query = "INSERT INTO " + tablename + " (username, screen_name, avatar, text, name, discount, price, image, created_at) "
-                    + "VALUES (?,?,?,?,?,?,?,?,?);";
+            String query = "INSERT INTO " + tablename + " (username, screen_name, avatar, text, discount, price, image, created_at,"
+                    + "tanggal, pembayaran, kode_voucher) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
             try (PreparedStatement dbStatement = conn.prepareStatement(query)) {
                 dbStatement.setString(1, data.username);
                 dbStatement.setString(2, data.screenName);
                 dbStatement.setString(3, data.avatar);
                 dbStatement.setString(4, data.tweet);
-                dbStatement.setString(5, data.name);
-                dbStatement.setString(6, data.discount);
-                dbStatement.setString(7, data.price);
-                dbStatement.setString(8, data.image);
-                dbStatement.setTimestamp(9, data.createdAt);
+                dbStatement.setString(5, data.discount);
+                dbStatement.setString(6, data.price);
+                dbStatement.setString(7, data.image);
+                dbStatement.setTimestamp(8, data.createdAt);
+                dbStatement.setString(9, data.tanggal);
+                dbStatement.setString(10, data.pembayaran);
+                dbStatement.setString(11, data.kodeVoucher);
                 dbStatement.executeUpdate();
                 dbStatement.close();
             }
@@ -209,8 +214,6 @@ public class DatabaseHelper {
         }
         return true;
     }
-    
-    
     
     public boolean insertTweets(int id, ArrayList<Diskon> data) {
         boolean flag = false;
@@ -244,9 +247,9 @@ public class DatabaseHelper {
             try (PreparedStatement dbStatement = conn.prepareStatement(query)) {
                 ResultSet rs = dbStatement.executeQuery();
                 if(rs.next()) {
-                    result.add(new Diskon(rs.getInt("id"), rs.getInt("category_id"), rs.getString("usename"), rs.getString("screen_name"),
-                                        rs.getString("avatar"), rs.getString("text"), rs.getTimestamp("created_at"), rs.getString("name"), 
-                                        rs.getString("discount"), rs.getString("price"), rs.getString("image")));
+                    result.add(new Diskon(rs.getInt("id"), rs.getInt("category_id"), rs.getString("username"), rs.getString("screen_name"),
+                                    rs.getString("avatar"), rs.getString("text"), rs.getTimestamp("created_at"), rs.getString("discount"), 
+                                    rs.getString("price"), rs.getString("image"), rs.getString("tanggal"), rs.getString("pembayaran"), rs.getString("kode_voucher")));
                 }
                 dbStatement.close();
             }
@@ -264,9 +267,9 @@ public class DatabaseHelper {
             try (PreparedStatement dbStatement = conn.prepareStatement(query)) {
                 ResultSet rs = dbStatement.executeQuery();
                 if(rs.next()) {
-                    result.add(new Diskon(rs.getInt("id"), rs.getInt("category_id"), rs.getString("usename"), rs.getString("screen_name"),
-                                        rs.getString("avatar"), rs.getString("text"), rs.getTimestamp("created_at"), rs.getString("name"), 
-                                        rs.getString("discount"), rs.getString("price"), rs.getString("image")));
+                    result.add(new Diskon(rs.getInt("id"), rs.getInt("category_id"), rs.getString("username"), rs.getString("screen_name"),
+                                    rs.getString("avatar"), rs.getString("text"), rs.getTimestamp("created_at"), rs.getString("discount"), 
+                                    rs.getString("price"), rs.getString("image"), rs.getString("tanggal"), rs.getString("pembayaran"), rs.getString("kode_voucher")));
                 }
                 dbStatement.close();
             }
