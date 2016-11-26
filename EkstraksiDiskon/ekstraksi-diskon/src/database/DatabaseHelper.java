@@ -243,7 +243,7 @@ public class DatabaseHelper {
         ArrayList<Diskon> result = new ArrayList<Diskon>();
         String tablename = this.getCategoryNameByCategory(category);
         try {
-            String query = "SELECT * FROM" + tablename;
+            String query = "SELECT * FROM " + tablename;
             try (PreparedStatement dbStatement = conn.prepareStatement(query)) {
                 ResultSet rs = dbStatement.executeQuery();
                 if(rs.next()) {
@@ -261,9 +261,9 @@ public class DatabaseHelper {
     
     public ArrayList<Diskon> getTweetsById(int id) {
         ArrayList<Diskon> result = new ArrayList<Diskon>();
-        String tablename = this.getCategoryNameById(id);
+        String tablename = this.getCategoryById(id);
         try {
-            String query = "SELECT * FROM" + tablename;
+            String query = "SELECT * FROM " + tablename;
             try (PreparedStatement dbStatement = conn.prepareStatement(query)) {
                 ResultSet rs = dbStatement.executeQuery();
                 if(rs.next()) {
