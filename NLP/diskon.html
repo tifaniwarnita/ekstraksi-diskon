@@ -1,0 +1,111 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link rel="shortcut icon" href="design/catalyzer_ico.ico">
+	<title>Discount CATalog</title>
+
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+    <link href="css/bootstrap.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="https://fonts.googleapis.com/css?family=Lilita+One" rel="stylesheet">
+
+</head>
+<body>
+<div id="discount-section">
+	<div class="container-fluid">
+		<div id="main-container">
+			<a href="index.html"><h1>Discount <span style="color:#7bd2f7">CAT</span>alog</h1></a>
+			<div id="discount-container">
+				<div class="text-center">
+					<h2 id="nama-kategori" style="display:inline-block"></h2>
+					<img id="gambar-kategori" height="40px" style="display:inline-block;margin-top:-15px;margin-left:10px">
+					<hr>
+					<ul id="legenda-informasi">
+						<li id="legenda-diskon">Diskon</li>
+						<li id="legenda-harga">Harga</li>
+						<li id="legenda-tanggal">Tanggal</li>
+						<li id="legenda-cara-pembayaran">Cara Pembayaran</li>
+						<li id="legenda-kode">Kode</li>
+					</ul>
+				</div>
+				<div id="tweets-container"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript">
+	function getParameterByName(name) {
+ 		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+	}
+
+	var namaKategori = {fashion: "Fashion", kecantikan: "Kecantikan & Kesehatan", rumahtangga: "Rumah Tangga", hiburan: "Hiburan", wisata: "Wisata", kuliner: "Kuliner", otomotif: "Otomotif", elektronik: "Elektronik", semua: "Semua", lainlain: "Lain-Lain"};	
+
+	var kategori = getParameterByName("kategori");
+	$('#gambar-kategori').attr('src','img/'+kategori+'.png');
+	$('#nama-kategori').html('<a href="index.html"><span class="glyphicon glyphicon-arrow-left"></span></a> '+namaKategori[kategori]);
+	var dataObject = {}
+	dataObject['kategori'] = kategori;
+	var url = 'http://192.168.0.117:8080/EkstraksiDiskonServer/diskon';
+
+	// var tweetdummy = {username: "asanilta", name: "Asanilta", avatar: "img/fashion.png", created_at: "26/11/2016 11:26 AM", id:"1", text: "Tes tes tes tes tes tes tes", image:"img/Main_Background.gif", kategori: "kecantikan"};
+	// var tweetHTML = function(tweet) {
+	// 	var html = `<div class="message-item">
+	// 					<div class="message-inner">
+	// 						<div class="message-head clearfix">
+	// 							<div class="avatar pull-left"><a href="http://twitter.com/${tweet.username}"><img src="${tweet.avatar}"></div>
+	// 							<div class="user-detail">
+	// 								<h5 class="handle">${tweet.screen_name}</h5>
+	// 								<div class="post-meta">
+	// 									<div class="asker-meta">
+	// 										<span class="qa-message-who">
+	// 											<span class="qa-message-who-data"><a href="http://twitter.com/${tweet.username}">@${tweet.username}</a></span>
+	// 										</span> | 
+	// 										<span class="qa-message-when">
+	// 											<span class="qa-message-when-data">${tweet.created_at}</span>
+	// 										</span>
+	// 									</div>
+	// 				 				</div>
+	// 							</div>
+	// 						</div>
+	// 						<div class="qa-message-content">${tweet.tweet}`;
+	// 	if (tweet.hasOwnProperty('image')) {
+	// 		html +=		`<br><br><img src="${tweet.image}" style="max-width:400px">`;
+	// 	}
+	// 	if (tweet.hasOwnProperty('category_id')) {
+	// 		html += `<div class="kategori-tweet">Kategori: <a href="diskon.html?kategori=${tweet.category_id}">${namaKategori[tweet.kategori]}</a></div>`;
+	// 	}
+	// 	html +=			`</div>
+	// 				</div>
+	// 			</div>`;
+	// 	return html;
+	// }
+	// $('#tweets-container').append(tweetHTML(tweetdummy));
+	$.getJSON(url,dataObject,function(response){
+			// var items = [];
+			alert(response);
+			// $.each(response.data, function(i,tweet) {
+				// items.push(tweetHTML(tweet));
+			// });
+			// $('#tweets-container').html(items.join(""));
+	});	
+	// var ajax_call = function() {
+	// 	$.getJSON(url,dataObject,function(response){
+	// 		var items = [];
+	// 		$.each(response.data, function(i,tweet) {
+	// 			alert(tweet);
+	// 			items.push(tweetHTML(tweet));
+	// 		});
+	// 		$('#tweets-container').html(items.join(""));
+	// 	});
+	// }
+	// var interval = 1000 * 60 * 1;
+	// setInterval(ajax_call,interval);
+
+</script>
+</body>
+</html>
