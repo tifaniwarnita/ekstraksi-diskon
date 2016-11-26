@@ -6,9 +6,14 @@ import weka.classifiers.Evaluation;
 import weka.classifiers.meta.FilteredClassifier;
 import weka.classifiers.trees.RandomForest;
 import weka.core.*;
+import weka.core.converters.ArffLoader;
 import weka.filters.Filter;
 import weka.filters.unsupervised.attribute.StringToWordVector;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -30,6 +35,15 @@ public class DiskonClassifier {
             e.printStackTrace();
         }
         return  filteredClassifier;
+    }
+
+    public static Instances loadArff(String filepath) throws IOException {
+        BufferedReader reader =
+                new BufferedReader(new FileReader(filepath));
+        ArffLoader.ArffReader arff = new ArffLoader.ArffReader(reader);
+        Instances data = arff.getData();
+        data.setClassIndex(data.numAttributes() - 1);
+        return data;
     }
 
     public static void buildClassifier(String pathSave, Instances data) throws Exception {

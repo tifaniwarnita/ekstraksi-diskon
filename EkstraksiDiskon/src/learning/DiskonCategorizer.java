@@ -2,7 +2,9 @@ package learning;
 
 import twitter4j.Status;
 import weka.classifiers.meta.FilteredClassifier;
+import weka.classifiers.trees.RandomForest;
 import weka.core.*;
+import weka.filters.unsupervised.attribute.StringToWordVector;
 
 import java.util.ArrayList;
 
@@ -19,10 +21,9 @@ public class DiskonCategorizer {
     public static final int OTOMOTIF = 6;
     public static final int RUMAH_TANGGA = 7;
     public static final int WISATA = 8;
-    public static final String PATH_MODEL_KATEGORISASI = "model/random-forest.model";
+    public static final String PATH_MODEL_KATEGORISASI = "model/kategori-model.model";
 
-    private static FilteredClassifier categorizer = null;
-    // private static FilteredClassifier categorizer = loadDiskonCategorizerModel(PATH_MODEL_KATEGORISASI);
+    private static FilteredClassifier categorizer = loadDiskonCategorizerModel(PATH_MODEL_KATEGORISASI);
 
     public static FilteredClassifier loadDiskonCategorizerModel(String path) {
         FilteredClassifier filteredClassifier = null;
