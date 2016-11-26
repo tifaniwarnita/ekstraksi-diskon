@@ -1,4 +1,5 @@
 import learning.DiskonClassifier;
+import learning.DiskonExtraction;
 import learning.PreProcess;
 import twitter4j.Status;
 import util.Scrapper;
@@ -20,9 +21,15 @@ public class EkstraksiDiskon {
     }
 
     public static void main(String[] args) throws Exception {
+        String tweet = "Sekarang djksfhds diskon 50% dan 30% 34 @peRseN";
+        ArrayList<String> result = DiskonExtraction.extractInfo(tweet, DiskonExtraction.DISKON);
+        for (String s : result) {
+            System.out.println(s);
+        }
+
         //PreProcess.readDictionary();
 //        PreProcess.processTSV("data/kategori.tsv", PreProcess.TYPE_KATEGORI);
-        PreProcess.saveArff("data/processed/kategori/", "data/processed/kategori.arff");
+//        PreProcess.saveArff("data/processed/kategori/", "data/processed/kategori.arff");
 
 //         preprocessData();
 //        Scrapper.config();
