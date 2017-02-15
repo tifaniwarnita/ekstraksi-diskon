@@ -1,0 +1,7 @@
+@relation C__Users_Tifani_Documents_GitHub_ekstraksi-diskon_EkstraksiDiskon_data_processed_diskon
+
+@attribute text string
+@attribute @@class@@ {tidak,ya}
+
+@data
+'sunswendy,aiSii,cyvjng diskon diskon sebentar rugi ',tidak

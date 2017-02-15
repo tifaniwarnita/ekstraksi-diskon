@@ -15,6 +15,7 @@ import java.util.Date;
  */
 public class Scrapper {
     public static Twitter twitter = null;
+    private static long firstID = Long.MIN_VALUE;
 
     public static void config() {
         ConfigurationBuilder cb = new ConfigurationBuilder();
@@ -31,8 +32,9 @@ public class Scrapper {
         Query query = new Query(searchQuery);
         long lastID = Long.MAX_VALUE;
         ArrayList<Status> tweets = new ArrayList<Status>();
+        boolean retrieve = true;
 
-        while (tweets.size () < numberOfTweets) {
+        while (tweets.size () < numberOfTweets && retrieve) {
             if (numberOfTweets - tweets.size() > 100) {
                 query.setCount(100);
             } else {
@@ -43,6 +45,12 @@ public class Scrapper {
             System.out.println("Gathered " + tweets.size() + " tweets");
             for (Status t: tweets) {
                 if(t.getId() < lastID) lastID = t.getId();
+                if(t.getId() > firstID) {
+                    firstID = t.getId();
+                } else {
+                    retrieve = false;
+                    break;
+                }
             }
             query.setMaxId(lastID-1);
         }

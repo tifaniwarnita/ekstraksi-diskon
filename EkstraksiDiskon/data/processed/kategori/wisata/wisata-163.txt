@@ -1,0 +1,1 @@
+tiket,Tiketcom,terbang hemat _maskapai_ dptkan diskon rp libur negeri _url_ 

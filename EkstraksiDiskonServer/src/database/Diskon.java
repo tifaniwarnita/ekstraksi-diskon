@@ -183,7 +183,7 @@ public class Diskon {
         jsonObject.put("username", screenName);
         jsonObject.put("avatar", avatar);
         jsonObject.put("tweet", tweet);
-        jsonObject.put("created_at", createdAt);
+        jsonObject.put("created_at", createdAt.toString());
         jsonObject.put("diskon", discount);
         jsonObject.put("harga", price);
         jsonObject.put("tanggal", tanggal);

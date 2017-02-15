@@ -77,7 +77,7 @@ public class DiskonServlet extends HttpServlet {
                 object.put("data", data);
             }
             object.put("kategori", kategori);
-            out.println(object.toString());
+            out.println(object.toJSONString());
         }
     }
 }

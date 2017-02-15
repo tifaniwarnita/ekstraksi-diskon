@@ -241,12 +241,11 @@ public class DatabaseHelper {
 
     public ArrayList<Diskon> getTweetsByCategory(String category) {
         ArrayList<Diskon> result = new ArrayList<Diskon>();
-        String tablename = this.getCategoryNameByCategory(category);
         try {
-            String query = "SELECT * FROM " + tablename;
+            String query = "SELECT * FROM " + category;
             try (PreparedStatement dbStatement = conn.prepareStatement(query)) {
                 ResultSet rs = dbStatement.executeQuery();
-                if(rs.next()) {
+                while (rs.next()) {
                     result.add(new Diskon(rs.getInt("id"), rs.getInt("category_id"), rs.getString("username"), rs.getString("screen_name"),
                             rs.getString("avatar"), rs.getString("text"), rs.getTimestamp("created_at"), rs.getString("discount"),
                             rs.getString("price"), rs.getString("image"), rs.getString("tanggal"), rs.getString("pembayaran"), rs.getString("kode_voucher")));
@@ -266,7 +265,7 @@ public class DatabaseHelper {
             String query = "SELECT * FROM " + tablename;
             try (PreparedStatement dbStatement = conn.prepareStatement(query)) {
                 ResultSet rs = dbStatement.executeQuery();
-                if(rs.next()) {
+                while (rs.next()) {
                     result.add(new Diskon(rs.getInt("id"), rs.getInt("category_id"), rs.getString("username"), rs.getString("screen_name"),
                             rs.getString("avatar"), rs.getString("text"), rs.getTimestamp("created_at"), rs.getString("discount"),
                             rs.getString("price"), rs.getString("image"), rs.getString("tanggal"), rs.getString("pembayaran"), rs.getString("kode_voucher")));
